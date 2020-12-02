@@ -6,8 +6,13 @@
 
 import { createApp } from "https://elektronstudio.github.io/live/src/deps/vue.js";
 
-import { useChat } from "https://elektronstudio.github.io/live/src/lib/chat.js";
-import { useUser } from "https://elektronstudio.github.io/live/src/lib/user.js";
+import {
+  useChat,
+  useUser,
+  useOpenvidu,
+} from "https://elektronstudio.github.io/live/src/lib/index.js";
+
+import OpenviduCanvas from "./OpenviduCanvas.js";
 
 // Replace with your personal channelname for testing
 // Will be connected to https://elektron.live/residence
@@ -15,8 +20,13 @@ import { useUser } from "https://elektronstudio.github.io/live/src/lib/user.js";
 const channel = "residence";
 
 const App = {
+  components: { OpenviduCanvas },
   setup() {
-    return { ...useChat(channel), ...useUser() };
+    return {
+      ...useChat(channel),
+      ...useUser(),
+      ...useOpenvidu(channel),
+    };
   },
 };
 

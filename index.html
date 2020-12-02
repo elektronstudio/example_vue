@@ -8,6 +8,8 @@
   <body>
     <div id="app">
       <h1>Vue example</h1>
+
+      <h2>Chat</h2>
       Your username: {{ userName }}
       <button @click="onUserNameChange">Change</button>
       <br /><br />
@@ -15,6 +17,18 @@
       <br />
       <button @click="onNewMessage">Send message</button>
       <pre ref="scrollEl">{{ messages }}</pre>
+
+      <h2>WebRTC</h2>
+      <button @click="joinSession">Join</button>
+      <button @click="leaveSession">Leave</button>
+      <p><openvidu-canvas :publisher="publisher" /></p>
+      <p>
+        <openvidu-canvas
+          v-for="(publisher, i) in subscribers"
+          :key="i"
+          :publisher="publisher"
+        />
+      </p>
     </div>
     <script type="module" src="./index.js"></script>
   </body>
